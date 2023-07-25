@@ -41,6 +41,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 			}
 		}
 		
+		System.out.println(result);
 		return result;
 	}
 
