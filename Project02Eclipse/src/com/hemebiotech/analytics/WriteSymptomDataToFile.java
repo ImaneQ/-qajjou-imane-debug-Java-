@@ -29,7 +29,7 @@ public class WriteSymptomDataToFile implements IsSymptomWriter{
 			BufferedWriter writer = new BufferedWriter(fileWriter);
 			// écrire symptômes + quantité
 			
-			writer.write(fileWriter, myResult);
+			writer.write(fileWriter);
 			writer.newLine();
 			myResult.put(filepath, null);
 			writer.close();
