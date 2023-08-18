@@ -29,7 +29,7 @@ public class Main {
 				Map<String, Integer> countSymptomsMap = counter.countSymptoms(symptomlist);
 				System.out.println(countSymptomsMap);
 
-				counter.writeSymptoms(countSymptomsMap);
+				//counter.writeSymptoms(countSymptomsMap);
 
 			}
 		} catch (FileNotFoundException e) {
