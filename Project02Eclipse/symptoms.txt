@@ -98,3 +98,6 @@ anxiety
 anxiety
 cough
 blurred vision
+tears
+tears
+cold

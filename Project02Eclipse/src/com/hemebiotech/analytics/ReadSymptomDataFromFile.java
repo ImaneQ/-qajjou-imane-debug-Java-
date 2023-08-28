@@ -19,29 +19,26 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	/**
 	 * 
-	 * @param filepath a full or partial path to file with symptom strings in it, one per line
+	 * @param filepath a full or partial path to file with symptom strings in it,
+	 *                 one per line
 	 */
-	public ReadSymptomDataFromFile (String filepath) {
+	public ReadSymptomDataFromFile(String filepath) {
 		this.filepath = filepath;
 	}
-	
+
 	public BufferedReader readFile() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-		BufferedReader reader = new BufferedReader (new FileReader("./Project02Eclipse/symptoms.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("./Project02Eclipse/src/symptoms.txt"));
 		return reader;
 	}
 
 	@Override
 	public List<String> getSymptoms() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<String> countSymptoms(List<String> list) {
-		// TODO Auto-generated method stub
+	public Map<String, Integer> countSymptoms(List<String> list) {
 		return null;
 	}
-
 
 }

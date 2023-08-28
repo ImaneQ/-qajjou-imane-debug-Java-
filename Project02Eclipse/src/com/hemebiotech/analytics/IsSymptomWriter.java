@@ -1,8 +1,10 @@
- package com.hemebiotech.analytics;
+package com.hemebiotech.analytics;
 
 import java.util.Map;
 
 public interface IsSymptomWriter {
 
-	public void writeSymptoms(Map<String, Integer> symptoms);
+	IsSymptomWriter writeInterface = new WriteSymptomDataToFile("./Project02Eclipse/src/result.out");
+
+	void writeSymptoms(Map<String, Integer> symptoms);
 }

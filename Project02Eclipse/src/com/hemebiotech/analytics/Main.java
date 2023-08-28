@@ -12,7 +12,6 @@ public class Main {
 	public static ISymptomReader reader;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		ISymptomReader readInterface = new ReadSymptomDataFromFile("./Project02Eclipse/symptoms.txt");
 		IsSymptomWriter writeInterface = new WriteSymptomDataToFile("./Project02Eclipse/result.out");
 
@@ -29,14 +28,18 @@ public class Main {
 				Map<String, Integer> countSymptomsMap = counter.countSymptoms(symptomlist);
 				System.out.println(countSymptomsMap);
 
-				//counter.writeSymptoms(countSymptomsMap);
+				Map<String, Integer> sortedSymptons = counter.sortSymptoms(countSymptomsMap);
+				System.out.println("tri des symptomes " + sortedSymptons);
+
+				counter.writeSymptoms(sortedSymptons);
 
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 

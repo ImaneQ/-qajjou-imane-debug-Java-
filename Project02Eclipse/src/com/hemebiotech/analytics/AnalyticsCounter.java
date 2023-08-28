@@ -8,21 +8,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
-public class AnalyticsCounter {
+public class AnalyticsCounter implements ISymptomReader, IsSymptomWriter {
 
-	// méthode étape 1)
 	public BufferedReader readFile() throws FileNotFoundException {
-		// TODO Auto-generated method stub
 		BufferedReader reader = new BufferedReader(new FileReader("./Project02Eclipse/symptoms.txt"));
 		return reader;
 	}
-
-	// méthode étape 2)
 
 	public List<String> getSymptoms() throws IOException {
 		BufferedReader reader = readFile();
@@ -41,54 +40,64 @@ public class AnalyticsCounter {
 
 				}
 				reader.close();
-				Collections.sort(list);
 
 			}
 
 			catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return list;
 	}
 
-	// méthode étape 3)
+	public Map<String, Integer> countSymptoms(List<String> list) {
 
-	public Map<String, Integer> countSymptoms(List<String> listofSymptoms) {
+		Map<String, Integer> countSymptomsMap = new HashMap<String, Integer>();
 
-		LinkedHashMap<String, Integer> countSymptomsMap = new LinkedHashMap<>();
-
-		for (String s : listofSymptoms) {
-			//System.out.println("-------------");
-			//System.out.println("symptom " + s);
+		for (String s : list) {
 
 			Integer countS = countSymptomsMap.get(s);
-			//System.out.println("compte " + countS);
 
 			countSymptomsMap.put(s, (countS == null) ? 1 : countS + 1);
-			System.out.println("compte après " + countSymptomsMap.get(s));
-
-			countSymptomsMap.forEach((k, v) -> {
-				System.out.println("clé : " + k + " Valeur : " + v);
-			});
 
 		}
 
 		return countSymptomsMap;
 	}
 
-	// méthode étape 4)
+	public Map<String, Integer> sortSymptoms(Map<String, Integer> countSymptomsMap) {
 
-	public void writeSymptoms(Map<String, Integer> countSymptomsMap) {
-		// Map<String, Integer> symptoms = new HashMap<String, Integer>();
+		/*
+		 * LinkedHashMap<String, Integer> sortSymptomsMap =
+		 * countSymptomsMap.entrySet().stream()
+		 * .sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::
+		 * getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
+		 * LinkedHashMap::new));
+		 */
 
+		// TEST avec TreeMap
+		Map<String, Integer> sortedTreeMap = new TreeMap<>(countSymptomsMap);
+
+		// System.out.println("test LinkedHashMap " + sortSymptomsMap);
+		System.out.println("test TreeMap " + sortedTreeMap);
+
+		return sortedTreeMap;
+
+	}
+
+	public void writeSymptoms(Map<String, Integer> sortSymptomsMap) {
+
+		// IsSymptomWriter writer = FileWriter("result.out");
+		// IsSymptomWriter writeInterface;
 		FileWriter fileWriter;
+		IsSymptomWriter writeInterface = new WriteSymptomDataToFile("./Project02Eclipse/result.out");
+
 		try {
-			fileWriter = new FileWriter("result.out");
+
+			fileWriter = new FileWriter("./Project02Eclipse/result.out");
 			BufferedWriter writer = new BufferedWriter(fileWriter);
 
-			for (Entry<String, Integer> entry : countSymptomsMap.entrySet()) {
+			for (Entry<String, Integer> entry : sortSymptomsMap.entrySet()) {
 
 				writer.write(entry.getKey() + ":" + entry.getValue());
 
@@ -97,7 +106,6 @@ public class AnalyticsCounter {
 
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -107,14 +115,14 @@ public class AnalyticsCounter {
 
 	public AnalyticsCounter(IsSymptomWriter writer, ISymptomReader reader) {
 
-		AnalyticsCounter.writer = writer;
-		AnalyticsCounter.reader = reader;
+		this.writer = writer;
+		this.reader = reader;
 	}
 
 	public static void main(String args[]) throws Exception {
 
 		AnalyticsCounter analytics = new AnalyticsCounter(writer, reader);
-		
+
 		analytics.readFile();
 		List<String> symptomlist = analytics.getSymptoms();
 
@@ -123,7 +131,11 @@ public class AnalyticsCounter {
 		Map<String, Integer> countSymptomsMap = analytics.countSymptoms(symptomlist);
 		System.out.println("compte des symptomes " + countSymptomsMap);
 
-		analytics.writeSymptoms(countSymptomsMap);
+		Map<String, Integer> sortedSymptons = analytics.sortSymptoms(countSymptomsMap);
+
+		System.out.println("tri des symptomes " + sortedSymptons);
+
+		analytics.writeSymptoms(sortedSymptons);
 
 	}
 

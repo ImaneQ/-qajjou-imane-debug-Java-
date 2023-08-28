@@ -2,7 +2,9 @@ package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Anything that will read symptom data from a source The important part is, the
@@ -22,8 +24,8 @@ public interface ISymptomReader {
 	 */
 	BufferedReader readFile() throws FileNotFoundException;
 
-	List<String> getSymptoms();
+	List<String> getSymptoms() throws IOException;
 
-	List<String> countSymptoms(List<String> list);
+	Map<String, Integer> countSymptoms(List<String> list);
 
 }
