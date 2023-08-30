@@ -11,5 +11,6 @@ public class WriteSymptomDataToFile implements IsSymptomWriter {
 	}
 
 	public void writeSymptoms(Map<String, Integer> symptoms) {
+		
 	}
 }
