@@ -28,4 +28,7 @@ public interface ISymptomReader {
 
 	Map<String, Integer> countSymptoms(List<String> list);
 
+	Map<String, Integer> sortSymptoms(Map<String, Integer> countSymptomsMap);
+
+
 }

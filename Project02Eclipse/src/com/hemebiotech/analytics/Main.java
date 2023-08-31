@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Main {
 
-	public static IsSymptomWriter writer;
+	public static ISymptomWriter writer;
 
 	public static ISymptomReader reader;
 
@@ -27,30 +27,24 @@ public class Main {
 	 */
 
 	public static void main(String[] args) {
-		ISymptomReader readInterface = new ReadSymptomDataFromFile("./Project02Eclipse/symptoms.txt");
-		IsSymptomWriter writeInterface = new WriteSymptomDataToFile("./Project02Eclipse/result.out");
 
 		AnalyticsCounter counter = new AnalyticsCounter(writer, reader);
-		/*ISymptomReader reader = counter;
-		ISymptomReader read = AnalyticsCounter.reader;*/
 
 		try {
-			if (readInterface != null && writeInterface != null) {
 
-				counter.readFile();
+			counter.readFile();
 
-				List<String> symptomlist = counter.getSymptoms();
-				System.out.println("affichage de la liste" + symptomlist);
+			List<String> symptomlist = counter.getSymptoms();
+			System.out.println("affichage de la liste" + symptomlist);
 
-				Map<String, Integer> countSymptomsMap = counter.countSymptoms(symptomlist);
-				System.out.println(countSymptomsMap);
+			Map<String, Integer> countSymptomsMap = counter.countSymptoms(symptomlist);
+			System.out.println(countSymptomsMap);
 
-				Map<String, Integer> sortedSymptons = counter.sortSymptoms(countSymptomsMap);
-				System.out.println("tri des symptomes " + sortedSymptons);
+			Map<String, Integer> sortedSymptons = counter.sortSymptoms(countSymptomsMap);
+			System.out.println("tri des symptomes " + sortedSymptons);
 
-				counter.writeSymptoms(sortedSymptons);
+			counter.writeSymptoms(sortedSymptons);
 
-			}
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
