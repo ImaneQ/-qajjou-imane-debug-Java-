@@ -3,10 +3,12 @@ package com.hemebiotech.analytics;
 import java.io.BufferedReader;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,34 +23,10 @@ import java.util.TreeMap;
  */
 
 public class AnalyticsCounter implements ISymptomReader, ISymptomWriter {
+
 	public static ISymptomWriter writer;
 	public static ISymptomReader reader;
-
-	public BufferedReader readFile() throws FileNotFoundException {
-		BufferedReader reader = new BufferedReader(new FileReader("./Project02Eclipse/symptoms.txt"));
-		return reader;
-	}
-
-	public List<String> getSymptoms() throws IOException {
-		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("./Project02Eclipse/symptoms.txt");
-
-		return reader.getSymptoms();
-	}
-
-	public Map<String, Integer> countSymptoms(List<String> list) {
-		ReadSymptomDataFromFile read = new ReadSymptomDataFromFile();
-		return read.countSymptoms(list);
-	}
-
-	public Map<String, Integer> sortSymptoms(Map<String, Integer> countSymptomsMap) {
-		ReadSymptomDataFromFile read = new ReadSymptomDataFromFile();
-		return read.sortSymptoms(countSymptomsMap);
-	}
-
-	public void writeSymptoms(Map<String, Integer> sortedTreeMap) {
-
-		WriteSymptomDataToFile writeSymptomDataToFile = new WriteSymptomDataToFile("./Project02Eclipse/result.out");
-	}
+	public String filepath;
 
 	/**
 	 * Le constructeur de la classe AnalyticsCounter qui permet de construire un
@@ -58,10 +36,31 @@ public class AnalyticsCounter implements ISymptomReader, ISymptomWriter {
 	 * @param objet writer de type IsSymptomWriter.
 	 */
 
-	public AnalyticsCounter(ISymptomWriter writer, ISymptomReader reader) {
+	public AnalyticsCounter(ISymptomWriter writerParam, ISymptomReader readerParam) {
 
-		this.writer = writer;
-		this.reader = reader;
+		this.writer = writerParam;
+		this.reader = readerParam;
+	}
+
+	public BufferedReader readFile() throws FileNotFoundException {
+		BufferedReader reader = new BufferedReader(new FileReader(filepath));
+		return reader;
+	}
+
+	public List<String> getSymptoms() throws IOException {
+		return reader.getSymptoms();
+	}
+
+	public Map<String, Integer> countSymptoms(List<String> list) {
+		return reader.countSymptoms(list);
+	}
+
+	public Map<String, Integer> sortSymptoms(Map<String, Integer> countSymptomsMap) {
+		return reader.sortSymptoms(countSymptomsMap);
+	}
+
+	public void writeSymptoms(Map<String, Integer> sortedTreeMap) throws IOException {
+		writer.writeSymptoms(sortedTreeMap);
 	}
 
 }

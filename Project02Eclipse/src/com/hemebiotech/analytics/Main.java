@@ -11,10 +11,6 @@ import java.util.Map;
 
 public class Main {
 
-	public static ISymptomWriter writer;
-
-	public static ISymptomReader reader;
-
 	/**
 	 * La méthode main() est la première fonction exécutée lors du lancement du
 	 * programme.
@@ -28,22 +24,22 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		AnalyticsCounter counter = new AnalyticsCounter(writer, reader);
+		ISymptomReader filepathReadSymptoms = new ReadSymptomDataFromFile("./Project02Eclipse/symptoms.txt");
+		ISymptomWriter filepathWriteSymptoms = new WriteSymptomDataToFile("./Project02Eclipse/results.out");
+
+		AnalyticsCounter counter = new AnalyticsCounter(filepathWriteSymptoms, filepathReadSymptoms);
 
 		try {
 
-			counter.readFile();
-
 			List<String> symptomlist = counter.getSymptoms();
-			System.out.println("affichage de la liste" + symptomlist);
+			System.out.println("affichage de la liste " + symptomlist);
 
 			Map<String, Integer> countSymptomsMap = counter.countSymptoms(symptomlist);
 			System.out.println(countSymptomsMap);
 
-			Map<String, Integer> sortedSymptons = counter.sortSymptoms(countSymptomsMap);
-			System.out.println("tri des symptomes " + sortedSymptons);
-
-			counter.writeSymptoms(sortedSymptons);
+			Map<String, Integer> sortedSymptoms = counter.sortSymptoms(countSymptomsMap);
+			System.out.println("tri des symptomes " + sortedSymptoms);
+			counter.writeSymptoms(sortedSymptoms);
 
 		} catch (FileNotFoundException e) {
 

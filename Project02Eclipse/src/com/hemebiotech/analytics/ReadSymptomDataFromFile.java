@@ -18,17 +18,15 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * @param filepath chemin d'accès au fichier sous forme de chaîne de caractère
 	 *                 String.
 	 */
+
 	public ReadSymptomDataFromFile(String filepath) {
 		this.filepath = filepath;
-	}
-
-	public ReadSymptomDataFromFile() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @return Une méthode readFile() qui renvoie un BufferedReader.
 	 */
+
 	public BufferedReader readFile() throws FileNotFoundException {
 		return new BufferedReader(new FileReader(filepath));
 	}
@@ -39,8 +37,10 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * @return Une méthode getSymptoms() qui permet de renvoyer une liste de chaînes
 	 *         de caractères.
 	 */
+
 	@Override
 	public List<String> getSymptoms() throws IOException {
+
 		BufferedReader reader = readFile();
 
 		ArrayList<String> list = new ArrayList<String>();
@@ -74,6 +74,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 *         données dont chaque entrée est constituée d’une clé de type String et
 	 *         d’une Valeur de type Integer.
 	 */
+
 	@Override
 
 	public Map<String, Integer> countSymptoms(List<String> list) {
@@ -97,11 +98,10 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * @return Une méthode sortSymptoms() qui permet de trier les symptômes par
 	 *         ordre alphabétique et retourne une collection de données triées.
 	 */
+
 	@Override
 	public Map<String, Integer> sortSymptoms(Map<String, Integer> countSymptomsMap) {
 		Map<String, Integer> sortedTreeMap = new TreeMap<>(countSymptomsMap);
-
-		System.out.println("test TreeMap " + sortedTreeMap);
 
 		return sortedTreeMap;
 

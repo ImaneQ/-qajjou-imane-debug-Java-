@@ -1,6 +1,7 @@
 package com.hemebiotech.analytics;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
@@ -19,23 +20,30 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	 *                      sortSymptoms().
 	 * @see sortSymptoms().
 	 */
-	public void writeSymptoms(Map<String, Integer> symptoms) {
+	public void writeSymptoms(Map<String, Integer> symptomsToWrite) throws IOException {
 
 		try {
+			File createNewFile = new File(filepath);
+			if (createNewFile.createNewFile()) {
+				System.out.println("File created: " + createNewFile.getName());
+			} else {
+				System.out.println("File already exists.");
+			}
+			FileWriter fr = null;
 
-			FileWriter fileWriter = new FileWriter(filepath);
-			BufferedWriter writer = new BufferedWriter(fileWriter);
+			fr = new FileWriter(createNewFile);
 
-			for (Entry<String, Integer> entry : symptoms.entrySet()) {
+			for (Entry<String, Integer> entry : symptomsToWrite.entrySet()) {
 
-				writer.write(entry.getKey() + ":" + entry.getValue());
+				fr.write(entry.getKey() + ":" + entry.getValue());
 
-				writer.newLine();
+				fr.write(System.lineSeparator());
 			}
 
-			writer.close();
+			fr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 }
