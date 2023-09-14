@@ -14,6 +14,7 @@ import java.util.Map;
  * The implementation does not need to order the list
  * 
  */
+
 public interface ISymptomReader {
 
 	BufferedReader readFile() throws FileNotFoundException;

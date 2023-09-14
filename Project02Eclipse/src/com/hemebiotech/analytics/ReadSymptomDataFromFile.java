@@ -15,8 +15,8 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	private String filepath;
 
 	/**
-	 * @param filepath chemin d'accès au fichier sous forme de chaîne de caractère
-	 *                 String.
+	 * @param filepath chemin d'accès au fichier sous forme de chaîne de caractères.
+	 * 
 	 */
 
 	public ReadSymptomDataFromFile(String filepath) {
@@ -32,10 +32,10 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	}
 
 	/**
-	 * @exception IOException levée lors de l'accès aux informations à l'aide d'un
+	 * @exception IOException exception qui pourrait survenir lors de la lecture du
 	 *                        fichier.
-	 * @return Une méthode getSymptoms() qui permet de renvoyer une liste de chaînes
-	 *         de caractères.
+	 * @return La méthode getSymptoms() permet de renvoyer une liste de chaînes de
+	 *         caractères.
 	 */
 
 	@Override
@@ -70,20 +70,18 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	/**
 	 * @param list Liste des symptômes retournés dans la méthode getSymptoms().
 	 * @see getSymptoms().
-	 * @return Une méthode countSymptoms() qui permet de renvoyer une structure de
-	 *         données dont chaque entrée est constituée d’une clé de type String et
+	 * @return La méthode countSymptoms() permet de renvoyer une structure de
+	 *         données dont chaque entrée est constituée d’une Clé de type String et
 	 *         d’une Valeur de type Integer.
 	 */
 
 	@Override
-
 	public Map<String, Integer> countSymptoms(List<String> list) {
 		Map<String, Integer> countSymptomsMap = new HashMap<String, Integer>();
 
 		for (String s : list) {
 
 			Integer countS = countSymptomsMap.get(s);
-
 			countSymptomsMap.put(s, (countS == null) ? 1 : countS + 1);
 
 		}
@@ -95,8 +93,8 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * @param countSymptomsMap Structure de données retournée dans la méthode
 	 *                         countSymptoms().
 	 * @see countSymptoms().
-	 * @return Une méthode sortSymptoms() qui permet de trier les symptômes par
-	 *         ordre alphabétique et retourne une collection de données triées.
+	 * @return La méthode sortSymptoms() permet de trier les symptômes par ordre
+	 *         alphabétique et retourne une collection de données triée.
 	 */
 
 	@Override

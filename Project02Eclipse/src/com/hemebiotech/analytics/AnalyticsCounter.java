@@ -29,11 +29,11 @@ public class AnalyticsCounter implements ISymptomReader, ISymptomWriter {
 	public String filepath;
 
 	/**
-	 * Le constructeur de la classe AnalyticsCounter qui permet de construire un
-	 * objet de la classe.
-	 * 
 	 * @param objet reader de type ISymptomReader.
 	 * @param objet writer de type IsSymptomWriter.
+	 * 
+	 * Le constructeur de la classe AnalyticsCounter permet de
+	 * construire un objet de la classe.
 	 */
 
 	public AnalyticsCounter(ISymptomWriter writerParam, ISymptomReader readerParam) {

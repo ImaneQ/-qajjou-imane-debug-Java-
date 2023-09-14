@@ -1,6 +1,5 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,8 +17,10 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	/**
 	 * @param sortedTreeMap Structure de données retournée dans la méthode
 	 *                      sortSymptoms().
-	 * @see sortSymptoms().
+	 * @see sortSymptoms() dans la classe ReadSymptomDataFromFile.
 	 */
+
+	@Override
 	public void writeSymptoms(Map<String, Integer> symptomsToWrite) throws IOException {
 
 		try {

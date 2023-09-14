@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * La classe Main qui sert à lancer les étapes successives de l'application.
+ * La classe Main sert à lancer les étapes successives de l'application.
  */
 
 public class Main {
@@ -31,14 +31,15 @@ public class Main {
 
 		try {
 
-			List<String> symptomlist = counter.getSymptoms();
-			System.out.println("affichage de la liste " + symptomlist);
+			List<String> symptomList = counter.getSymptoms();
+			System.out.println("Affichage de la liste : " + symptomList);
 
-			Map<String, Integer> countSymptomsMap = counter.countSymptoms(symptomlist);
-			System.out.println(countSymptomsMap);
+			Map<String, Integer> countSymptomsMap = counter.countSymptoms(symptomList);
+			System.out.println("Compte du nombre de symptômes : " + countSymptomsMap);
 
 			Map<String, Integer> sortedSymptoms = counter.sortSymptoms(countSymptomsMap);
-			System.out.println("tri des symptomes " + sortedSymptoms);
+			System.out.println("Tri des symptômes par ordre alphabétique : " + sortedSymptoms);
+
 			counter.writeSymptoms(sortedSymptoms);
 
 		} catch (FileNotFoundException e) {
