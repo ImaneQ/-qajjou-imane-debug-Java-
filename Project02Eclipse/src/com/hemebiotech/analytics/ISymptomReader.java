@@ -17,7 +17,7 @@ import java.util.Map;
 
 public interface ISymptomReader {
 
-	BufferedReader readFile() throws FileNotFoundException;
+	BufferedReader createNewReader() throws FileNotFoundException;
 
 	List<String> getSymptoms() throws IOException;
 

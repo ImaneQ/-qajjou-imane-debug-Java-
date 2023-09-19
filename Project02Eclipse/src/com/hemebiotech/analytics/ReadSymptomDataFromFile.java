@@ -24,10 +24,10 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	}
 
 	/**
-	 * @return Une méthode readFile() qui renvoie un BufferedReader.
+	 * @return Une méthode createNewReader() qui renvoie un BufferedReader.
 	 */
 
-	public BufferedReader readFile() throws FileNotFoundException {
+	public BufferedReader createNewReader() throws FileNotFoundException {
 		return new BufferedReader(new FileReader(filepath));
 	}
 
@@ -41,7 +41,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	@Override
 	public List<String> getSymptoms() throws IOException {
 
-		BufferedReader reader = readFile();
+		BufferedReader reader = createNewReader();
 
 		ArrayList<String> list = new ArrayList<String>();
 

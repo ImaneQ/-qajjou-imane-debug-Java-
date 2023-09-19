@@ -25,11 +25,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 
 		try {
 			File createNewFile = new File(filepath);
-			if (createNewFile.createNewFile()) {
-				System.out.println("File created: " + createNewFile.getName());
-			} else {
-				System.out.println("File already exists.");
-			}
+		
 			FileWriter fr = null;
 
 			fr = new FileWriter(createNewFile);

@@ -24,21 +24,18 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		ISymptomReader filepathReadSymptoms = new ReadSymptomDataFromFile("./Project02Eclipse/symptoms.txt");
-		ISymptomWriter filepathWriteSymptoms = new WriteSymptomDataToFile("./Project02Eclipse/results.out");
+		ISymptomReader filepathReadSymptoms = new ReadSymptomDataFromFile("symptoms.txt");
+		ISymptomWriter filepathWriteSymptoms = new WriteSymptomDataToFile("results.out");
 
 		AnalyticsCounter counter = new AnalyticsCounter(filepathWriteSymptoms, filepathReadSymptoms);
 
 		try {
 
 			List<String> symptomList = counter.getSymptoms();
-			System.out.println("Affichage de la liste : " + symptomList);
 
 			Map<String, Integer> countSymptomsMap = counter.countSymptoms(symptomList);
-			System.out.println("Compte du nombre de symptômes : " + countSymptomsMap);
 
 			Map<String, Integer> sortedSymptoms = counter.sortSymptoms(countSymptomsMap);
-			System.out.println("Tri des symptômes par ordre alphabétique : " + sortedSymptoms);
 
 			counter.writeSymptoms(sortedSymptoms);
 

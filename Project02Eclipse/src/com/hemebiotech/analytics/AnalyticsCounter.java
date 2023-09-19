@@ -32,8 +32,8 @@ public class AnalyticsCounter implements ISymptomReader, ISymptomWriter {
 	 * @param objet reader de type ISymptomReader.
 	 * @param objet writer de type IsSymptomWriter.
 	 * 
-	 * Le constructeur de la classe AnalyticsCounter permet de
-	 * construire un objet de la classe.
+	 *              Le constructeur de la classe AnalyticsCounter permet de
+	 *              construire un objet de la classe.
 	 */
 
 	public AnalyticsCounter(ISymptomWriter writerParam, ISymptomReader readerParam) {
@@ -42,7 +42,7 @@ public class AnalyticsCounter implements ISymptomReader, ISymptomWriter {
 		this.reader = readerParam;
 	}
 
-	public BufferedReader readFile() throws FileNotFoundException {
+	public BufferedReader createNewReader() throws FileNotFoundException {
 		BufferedReader reader = new BufferedReader(new FileReader(filepath));
 		return reader;
 	}

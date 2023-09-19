@@ -78,6 +78,7 @@ fever
 constricted pupils
 cough
 stiff neck
+anxiety
 inflamation
 blurred vision
 fever
@@ -101,8 +102,4 @@ blurred vision
 tears
 tears
 cold
-high temperature
-high temperature
-high temperature
-high temperature
-high temperature
+insomnia
