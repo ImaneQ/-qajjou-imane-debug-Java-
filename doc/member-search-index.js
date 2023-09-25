@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.hemebiotech.analytics","c":"ISymptomWriter","l":"writeSymptoms(Map<String, Integer>)","u":"writeSymptoms(java.util.Map)"}];updateSearchResults();
